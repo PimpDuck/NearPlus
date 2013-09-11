@@ -2,8 +2,8 @@
 #Cooldown is in minutes#
 
 NearPlus:
-  Chat-Prefix: ' &f[&bDC&4Near&f] '
-  ServerName: ' &bDiamcraft '
+  Chat-Prefix: ' &f[&bNear&4Plus&f] '
+  ServerName: ' Server name here '
   Distance:
     God: 175
     Ub3r: 150
