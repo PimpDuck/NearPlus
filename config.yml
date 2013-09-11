@@ -1,0 +1,14 @@
+#NearPlus ~ Created by PimpDuck#
+#Cooldown is in minutes#
+
+NearPlus:
+  Chat-Prefix: ' &f[&bDC&4Near&f] '
+  ServerName: ' &bDiamcraft '
+  Distance:
+    God: 175
+    Ub3r: 150
+    Legend: 125
+    Super: 100
+
+  Options:
+    Cooldown: 6
