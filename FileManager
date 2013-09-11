@@ -1,0 +1,190 @@
+package me.PimpDuck.NearPlus;
+
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
+
+public class FileManager
+{
+  public final Logger logger = Logger.getLogger("Minecraft");
+  private NearPlus plugin;
+  private YamlConfiguration fileManager;
+  private String fileName;
+
+  public FileManager(NearPlus instance, String filename)
+  {
+    this.plugin = instance;
+    this.fileName = filename;
+    saveFile();
+    loadFile();
+  }
+
+  public void saveFile() {
+    try {
+      File file = new File(this.plugin.getDataFolder(), this.fileName);
+      try {
+        if (!file.exists())
+          this.plugin.saveResource(this.fileName, false);
+        else
+          this.fileManager.save(file);
+      }
+      catch (Exception e) {
+        this.fileManager.save(file);
+      }
+    } catch (Exception localException1) {
+    }
+  }
+
+  public void loadFile() { this.fileManager = YamlConfiguration.loadConfiguration(new File(this.plugin.getDataFolder(), this.fileName)); }
+
+  public Set<String> getKeys(boolean deep)
+  {
+    try {
+      return this.fileManager.getKeys(deep); } catch (Exception ex) {
+    }
+    return null;
+  }
+
+  public Set<String> getKeys(boolean deep, boolean load)
+  {
+    if (load) loadFile();
+    return getKeys(deep);
+  }
+
+  public boolean getBoolean(String path) {
+    try {
+      return this.fileManager.getBoolean(path); } catch (Exception ex) {
+    }
+    return false;
+  }
+
+  public boolean getBoolean(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getBoolean(path);
+  }
+
+  public int getInt(String path) {
+    try {
+      return this.fileManager.getInt(path); } catch (Exception ex) {
+    }
+    return 0;
+  }
+
+  public int getInt(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getInt(path);
+  }
+
+  public double getDouble(String path) {
+    try {
+      return this.fileManager.getDouble(path); } catch (Exception ex) {
+    }
+    return 0.0D;
+  }
+
+  public double getDouble(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getDouble(path);
+  }
+
+  public String getString(String path) {
+    try {
+      return this.fileManager.getString(path); } catch (Exception ex) {
+    }
+    return "";
+  }
+
+  public String getString(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getString(path);
+  }
+
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+public ArrayList<String> getStringList(String path) {
+    try {
+      return (ArrayList)this.fileManager.getStringList(path); } catch (Exception ex) {
+    }
+    return new ArrayList();
+  }
+
+  public List<String> getStringList(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getStringList(path);
+  }
+
+  public ConfigurationSection getConfigurationSection(String path) {
+    try {
+      return this.fileManager.getConfigurationSection(path); } catch (Exception ex) {
+    }
+    return null;
+  }
+
+  public ConfigurationSection getConfigurationSection(String path, boolean load)
+  {
+    if (load) loadFile();
+    return getConfigurationSection(path);
+  }
+
+  public void createSection(String path, Map<String, Object> map) {
+    try {
+      this.fileManager.createSection(path, map); } catch (Exception localException) {
+    }
+  }
+
+  public void createSection(String path, Map<String, Object> map, boolean load) {
+    if (load) loadFile();
+    createSection(path, map);
+  }
+
+  public boolean isConfigurationSection(String path) {
+    try {
+      return this.fileManager.isConfigurationSection(path); } catch (Exception ex) {
+    }
+    return false;
+  }
+
+  public boolean isConfigurationSection(String path, boolean load)
+  {
+    if (load) loadFile();
+    return isConfigurationSection(path);
+  }
+
+  public void set(String path, Object object, boolean load) {
+    if (load) loadFile();
+    this.fileManager.set(path, object);
+    saveFile();
+  }
+
+  public List<Map<?, ?>> getMapList(String path, boolean load) {
+    if (load) loadFile();
+    return this.fileManager.getMapList(path);
+  }
+
+  public ItemStack getItemStack(String path) {
+    return this.fileManager.getItemStack(path);
+  }
+
+  public List<?> getList(String path) {
+    return this.fileManager.getList(path);
+  }
+
+  public ItemStack[] getInventory(String path) {
+    ItemStack[] inventory = new ItemStack[getList(path).size()];
+    for (int i = 0; i < getList(path).size(); i++) {
+      inventory[i] = ((ItemStack)getList(path).get(i));
+    }
+    return inventory;
+  }
+}
