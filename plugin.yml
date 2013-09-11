@@ -1,0 +1,31 @@
+name: NearPlus
+main: me.PimpDuck.NearPlus.NearPlus
+version: 1.0
+commands:
+  near:
+    description: Gets nearby players
+permissions:
+  nearplus.god:
+    default: op
+    description: Allow players to use the /near command for GOD's distance
+  nearplus.ub3r:
+    default: op
+    description: Allow players to use the /near command for Ub3r's distance
+  nearplus.legend:
+    default: op
+    description: Allow players to use the /near command for Legend's distance
+  nearplus.super:
+    default: op
+    description: Allow players to use the /near command for Super's distance
+  nearplus.reload:
+    default: op
+    description: Allow players to reload the config
+  nearplus.*:
+    default: op
+    description: Allow players to use the /near [distance] command
+    children:
+      dcnear.god: true
+      dcnear.ub3r: true
+      dcnear.legend: true
+      dcnear.super: true
+      dcnear.reload: true
